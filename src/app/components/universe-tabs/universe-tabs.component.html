@@ -1,0 +1,5 @@
+<mat-tab-group>
+  <mat-tab *ngFor="let tab of domains" [label]="tab.domain">
+    <tab-content [domain]="tab"></tab-content>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,42 @@
+<ng-container *ngFor="let bigFeature of domain.big_features">
+  <h2>{{bigFeature.name}}</h2>
+  <table mat-table [dataSource]="getDataFromBigFeature(bigFeature)" class="mat-elevation-z8 fullWidth">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let feature"> {{feature.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dev">
+      <th mat-header-cell *matHeaderCellDef>Dev</th>
+      <td mat-cell *matCellDef="let feature">
+        <mat-slide-toggle [ngClass]="getClassFromStatus(feature.dev)"  [checked]="feature.dev !== 0" (click)="updateFF($event, bigFeature, feature, 'dev')"></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stg1">
+      <th mat-header-cell *matHeaderCellDef>Stg1</th>
+      <td mat-cell *matCellDef="let feature">
+        <mat-slide-toggle [ngClass]="getClassFromStatus(feature.stg1)"  [checked]="feature.stg1 !== 0" (click)="updateFF($event, bigFeature, feature, 'stg1')"></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stg2">
+      <th mat-header-cell *matHeaderCellDef>Stg2</th>
+      <td mat-cell *matCellDef="let feature">
+        <mat-slide-toggle [ngClass]="getClassFromStatus(feature.stg2)" [checked]="feature.stg2 !== 0" (click)="updateFF($event, bigFeature, feature, 'stg2')"></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prod">
+      <th mat-header-cell *matHeaderCellDef>Prod</th>
+      <td mat-cell *matCellDef="let feature">
+        <mat-slide-toggle [ngClass]="getClassFromStatus(feature.prod)" [checked]="feature.prod !== 0" (click)="updateFF($event, bigFeature, feature, 'prod')"></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</ng-container>
+
+
